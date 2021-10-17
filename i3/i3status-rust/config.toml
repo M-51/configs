@@ -1,0 +1,81 @@
+[theme]
+file = "gruvbox-dark"
+[theme.overrides]
+separator = ""
+warning_fg = "#282828"
+warning_bg = "#fe8019"
+[icons]
+file = "awesome5"
+
+[[block]]
+block = "toggle"
+
+text="Dual screen"
+command_state = "xrandr | grep 'HDMI1 connected [0-9]'"
+command_on = "~/.screenlayout/double.sh"
+command_off = "~/.screenlayout/single.sh"
+
+
+[[block]]
+block = "custom"
+command = "echo '\uf0ac' `curl ipv4bot.whatismyipaddress.com`" # assumes fontawesome icons
+interval = 301
+
+[[block]]
+block = "docker"
+interval = 10
+format = "{running:1}/{total:1}"
+
+[[block]]
+block = "disk_space"
+path = "/"
+alias = "/"
+info_type = "available"
+unit = "GB"
+interval = 60
+warning = 50.0
+alert = 10.0
+format = "{icon} System:{used}/{total}"
+
+[[block]]
+block = "disk_space"
+path = "/mnt/Data"
+alias = "/"
+info_type = "available"
+unit = "GB"
+interval = 60
+warning = 50.0
+alert = 10.0
+format = "Data: {used}/{total}"
+
+[[block]]
+block = "memory"
+display_type = "memory"
+format_mem = "{mem_used_percents:1}"
+format_swap = "{swap_used_percents}"
+
+[[block]]
+block = "temperature"
+chip = "coretemp"
+collapsed = false
+driver = "sysfs"
+inputs = ["Package id 0"]
+format = "{average:1}"
+
+[[block]]
+block = "cpu"
+interval = 1
+format = "{utilization:2}"
+
+[[block]]
+block = "load"
+interval = 1
+format = "{1m}"
+
+[[block]]
+block = "sound"
+
+[[block]]
+block = "time"
+interval = 1
+format = "%d.%m.%Y, %H:%M:%S"
